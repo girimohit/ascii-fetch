@@ -26,9 +26,9 @@ export default function ReadmeCard({
       ref={cardRef}
       id="readme-card-container"
       style={{ backgroundColor: cardBgColor }}
-      className="p-8 sm:p-10 rounded-xl text-neutral-100 font-mono select-none shadow-2xl border border-white/10 w-max max-w-none"
+      className="p-2 sm:p-4 rounded-xl text-neutral-100 font-mono select-none shadow-2xl border border-white/10 w-max max-w-none"
     >
-      <div className="flex flex-row items-start gap-8 md:gap-12">
+      <div className="flex flex-row items-start gap-2 md:gap-4">
         
         {/* ASCII Art */}
         <div className="flex-shrink-0 flex items-center justify-center">

@@ -84,7 +84,7 @@ body {
 
 .glass-btn-primary:hover {
   background: linear-gradient(135deg, #d373db, #b34ebc);
-  box-shadow: 0 6px 24px rgba(198, 96, 206, 0.45);
+  box-shadow: 0 6px 24px rgba(13, 1, 14, 0.45);
   transform: translateY(-1px);
 }
 

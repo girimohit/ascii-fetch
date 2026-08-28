@@ -84,7 +84,7 @@ export default function FieldEditor({ fields, onChange }: FieldEditorProps) {
               <>
                 <input
                   type="text"
-                  maxLength={24}
+                  maxLength={20}
                   value={field.key}
                   onChange={(e) => handleFieldChange(field.id, 'key', e.target.value)}
                   placeholder="Key (e.g. Role)"
@@ -93,7 +93,7 @@ export default function FieldEditor({ fields, onChange }: FieldEditorProps) {
                 <span className="text-sm font-mono text-neutral-600">:</span>
                 <input
                   type="text"
-                  maxLength={65}
+                  maxLength={45}
                   value={field.value}
                   onChange={(e) => handleFieldChange(field.id, 'value', e.target.value)}
                   placeholder="Value"
