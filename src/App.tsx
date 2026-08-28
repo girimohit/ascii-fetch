@@ -24,12 +24,20 @@ const INITIAL_FIELDS: ProfileField[] = [
   { id: '13', key: 'LinkedIn', value: 'linkedin.com/in/mohitgiri' },
 ];
 
+const CARD_BG_PRESETS = [
+  { name: 'GitHub Dark', hex: '#0d1117' },
+  { name: 'Pitch Black', hex: '#05070a' },
+  { name: 'Dark Slate', hex: '#0f172a' },
+  { name: 'Charcoal', hex: '#161b22' },
+];
+
 export default function App() {
   const [username, setUsername] = useState('mohitgiri');
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [asciiArt, setAsciiArt] = useState<string>(DEFAULT_ASCII);
   const [asciiWidth, setAsciiWidth] = useState<number>(44);
   const [invertAscii, setInvertAscii] = useState<boolean>(false);
+  const [cardBgColor, setCardBgColor] = useState<string>('#0d1117');
   const [isConverting, setIsConverting] = useState<boolean>(false);
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [fields, setFields] = useState<ProfileField[]>(INITIAL_FIELDS);
@@ -157,6 +165,38 @@ export default function App() {
                 </div>
               )}
 
+              {/* Card Background Color Selector */}
+              <div className="space-y-2.5">
+                <label className="text-xs font-medium text-neutral-300">Card Background</label>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {CARD_BG_PRESETS.map((preset) => (
+                    <button
+                      key={preset.hex}
+                      type="button"
+                      onClick={() => setCardBgColor(preset.hex)}
+                      className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono flex items-center gap-1.5 transition-all ${
+                        cardBgColor === preset.hex
+                          ? 'bg-[#C660CE]/20 text-white border border-[#C660CE]'
+                          : 'bg-black/30 text-neutral-400 border border-white/5 hover:border-white/15'
+                      }`}
+                    >
+                      <span
+                        className="w-2.5 h-2.5 rounded-full border border-white/20"
+                        style={{ backgroundColor: preset.hex }}
+                      />
+                      {preset.name}
+                    </button>
+                  ))}
+                  <input
+                    type="color"
+                    value={cardBgColor}
+                    onChange={(e) => setCardBgColor(e.target.value)}
+                    title="Custom color"
+                    className="w-7 h-7 rounded-lg bg-transparent border border-white/10 cursor-pointer p-0.5"
+                  />
+                </div>
+              </div>
+
               <hr className="border-white/10" />
 
               {/* Dynamic Field Editor */}
@@ -170,7 +210,7 @@ export default function App() {
           {/* Right Column: Live README Preview */}
           <section className="lg:col-span-7 space-y-6">
             <div className="glass-panel rounded-2xl p-6 space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between flex-wrap gap-3">
                 <div>
                   <h2 className="text-lg font-medium text-white mb-0.5">Live Preview</h2>
                   <p className="text-xs text-neutral-400">
@@ -204,6 +244,7 @@ export default function App() {
                   username={username}
                   asciiArt={asciiArt}
                   fields={fields}
+                  cardBgColor={cardBgColor}
                 />
               </div>
             </div>
