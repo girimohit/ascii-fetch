@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Header from './components/Header';
 import PhotoUploader from './components/PhotoUploader';
 import FieldEditor from './components/FieldEditor';
+import ReadmeCard from './components/ReadmeCard';
+import { DEFAULT_ASCII } from './utils/constants';
 import type { ProfileField } from './types';
 
 const INITIAL_FIELDS: ProfileField[] = [
@@ -23,6 +25,7 @@ const INITIAL_FIELDS: ProfileField[] = [
 export default function App() {
   const [username, setUsername] = useState('mohitgiri');
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [asciiArt, setAsciiArt] = useState<string>(DEFAULT_ASCII);
   const [fields, setFields] = useState<ProfileField[]>(INITIAL_FIELDS);
 
   return (
@@ -77,16 +80,26 @@ export default function App() {
 
           {/* Right Column: Live README Preview */}
           <section className="lg:col-span-7 space-y-6">
-            <div className="glass-panel rounded-2xl p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-medium text-white">Live Preview</h2>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  Live
+            <div className="glass-panel rounded-2xl p-6 space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-medium text-white mb-0.5">Live Preview</h2>
+                  <p className="text-xs text-neutral-400">
+                    Real-time generated GitHub README card
+                  </p>
+                </div>
+                <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
+                  ● Live
                 </span>
               </div>
 
-              <div className="text-xs text-neutral-500 border border-dashed border-white/10 rounded-xl p-12 text-center">
-                Fastfetch card preview
+              {/* Readme Card Component */}
+              <div className="overflow-x-auto pb-2">
+                <ReadmeCard
+                  username={username}
+                  asciiArt={asciiArt}
+                  fields={fields}
+                />
               </div>
             </div>
           </section>
