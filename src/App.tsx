@@ -1,10 +1,29 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import PhotoUploader from './components/PhotoUploader';
+import FieldEditor from './components/FieldEditor';
+import type { ProfileField } from './types';
+
+const INITIAL_FIELDS: ProfileField[] = [
+  { id: '1', key: 'Role', value: 'Software Development Engineer' },
+  { id: '2', key: 'Status', value: 'Building' },
+  { id: '3', key: 'Focus', value: 'Web Apps, SaaS, Backend Systems' },
+  { id: '4', key: 'Languages.Core', value: 'C++, JavaScript, TypeScript, Python' },
+  { id: '5', key: 'Frameworks.Frontend', value: 'Next.js, React' },
+  { id: '6', key: 'Frameworks.Backend', value: 'Django, REST APIs' },
+  { id: '7', key: 'DevOps', value: 'Docker, AWS' },
+  { id: '8', key: 'Architecture', value: 'Multi-tenant, APIs, Database Design' },
+  { id: '9', key: 'Approach', value: 'Build fast, learn faster' },
+  { id: '10', key: 'Contact', value: '', isSectionHeader: true },
+  { id: '11', key: 'Email', value: 'mohitgiri1103@gmail.com' },
+  { id: '12', key: 'Portfolio', value: 'mohitgiri.vercel.app' },
+  { id: '13', key: 'LinkedIn', value: 'linkedin.com/in/mohitgiri' },
+];
 
 export default function App() {
   const [username, setUsername] = useState('mohitgiri');
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [fields, setFields] = useState<ProfileField[]>(INITIAL_FIELDS);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -21,7 +40,7 @@ export default function App() {
               <div>
                 <h2 className="text-lg font-medium text-white mb-1">Configuration</h2>
                 <p className="text-xs text-neutral-400">
-                  Customize your profile and photo
+                  Customize your profile details and photo
                 </p>
               </div>
 
@@ -45,6 +64,14 @@ export default function App() {
                 photoUrl={photoUrl}
                 onPhotoChange={setPhotoUrl}
               />
+
+              <hr className="border-white/10" />
+
+              {/* Dynamic Field Editor */}
+              <FieldEditor
+                fields={fields}
+                onChange={setFields}
+              />
             </div>
           </section>
 
@@ -54,7 +81,7 @@ export default function App() {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-medium text-white">Live Preview</h2>
                 <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  Ready
+                  Live
                 </span>
               </div>
 
