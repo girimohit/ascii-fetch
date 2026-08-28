@@ -34,7 +34,8 @@ export default function App() {
   const [username, setUsername] = useState('mohitgiri');
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [asciiArt, setAsciiArt] = useState<string>(DEFAULT_ASCII);
-  const [asciiWidth, setAsciiWidth] = useState<number>(44);
+  const [asciiWidth, setAsciiWidth] = useState<number>(75);
+  const [asciiFontSize, setAsciiFontSize] = useState<number>(6.5);
   const [invertAscii, setInvertAscii] = useState<boolean>(false);
   const [cardBgColor, setCardBgColor] = useState<string>('#0d1117');
   const [isConverting, setIsConverting] = useState<boolean>(false);
@@ -117,20 +118,40 @@ export default function App() {
               />
 
               {photoUrl && (
-                <div className="p-4 rounded-xl bg-black/30 border border-white/5 space-y-3">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-neutral-300 font-medium">ASCII Resolution</span>
-                    <span className="text-[#C660CE] font-mono text-xs font-semibold">{asciiWidth} chars</span>
+                <div className="p-4 rounded-xl bg-black/30 border border-white/5 space-y-4">
+                  {/* Slider 1: Density / Resolution */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-neutral-300 font-medium">Density (Columns)</span>
+                      <span className="text-[#C660CE] font-mono text-xs font-semibold">{asciiWidth} chars</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="30"
+                      max="180"
+                      step="2"
+                      value={asciiWidth}
+                      onChange={(e) => setAsciiWidth(Number(e.target.value))}
+                      className="w-full accent-[#C660CE] cursor-pointer"
+                    />
                   </div>
-                  <input
-                    type="range"
-                    min="32"
-                    max="64"
-                    step="2"
-                    value={asciiWidth}
-                    onChange={(e) => setAsciiWidth(Number(e.target.value))}
-                    className="w-full accent-[#C660CE] cursor-pointer"
-                  />
+
+                  {/* Slider 2: Size / Scale */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-neutral-300 font-medium">Art Scale (Font Size)</span>
+                      <span className="text-[#38bdf8] font-mono text-xs font-semibold">{asciiFontSize}px</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="3.5"
+                      max="12"
+                      step="0.5"
+                      value={asciiFontSize}
+                      onChange={(e) => setAsciiFontSize(Number(e.target.value))}
+                      className="w-full accent-[#38bdf8] cursor-pointer"
+                    />
+                  </div>
 
                   <div className="flex items-center justify-between pt-1">
                     <label className="text-sm text-neutral-400 cursor-pointer flex items-center gap-2">
@@ -227,6 +248,7 @@ export default function App() {
                   asciiArt={asciiArt}
                   fields={fields}
                   cardBgColor={cardBgColor}
+                  asciiFontSize={asciiFontSize}
                 />
               </div>
             </div>

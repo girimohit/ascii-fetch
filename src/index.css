@@ -89,10 +89,13 @@ body {
 }
 
 .ascii-art {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  line-height: 1.05;
+  font-family: Consolas, "Courier New", "Cascadia Code", ui-monospace, Menlo, monospace;
+  font-weight: 400;
+  line-height: 1.02;
   letter-spacing: 0px;
   white-space: pre;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {

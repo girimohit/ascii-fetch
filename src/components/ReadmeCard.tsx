@@ -6,6 +6,7 @@ interface ReadmeCardProps {
   asciiArt: string;
   fields: ProfileField[];
   cardBgColor?: string;
+  asciiFontSize?: number;
   cardRef?: React.RefObject<HTMLDivElement | null>;
 }
 
@@ -14,6 +15,7 @@ export default function ReadmeCard({
   asciiArt,
   fields,
   cardBgColor = '#0d1117',
+  asciiFontSize = 7,
   cardRef,
 }: ReadmeCardProps) {
   const maxKeyLen = Math.max(
@@ -26,13 +28,19 @@ export default function ReadmeCard({
       ref={cardRef}
       id="readme-card-container"
       style={{ backgroundColor: cardBgColor }}
-      className="p-2 sm:p-4 rounded-xl text-neutral-100 font-mono select-none shadow-2xl border border-white/10 w-max max-w-none"
+      className="p-4 sm:p-6 rounded-xl text-neutral-100 font-mono select-none shadow-2xl border border-white/10 w-max max-w-none"
     >
-      <div className="flex flex-row items-start gap-2 md:gap-4">
+      <div className="flex flex-row items-center gap-6 md:gap-8">
         
         {/* ASCII Art */}
-        <div className="flex-shrink-0 flex items-center justify-center">
-          <pre className="ascii-art text-[10px] sm:text-[11px] leading-[1.05] text-[#e6edf3] font-bold">
+        <div className="flex-shrink-0 flex items-center justify-center overflow-hidden">
+          <pre
+            className="ascii-art text-[#e6edf3] font-normal text-center"
+            style={{
+              fontSize: `${asciiFontSize}px`,
+              lineHeight: 1.02,
+            }}
+          >
             {asciiArt || '  (upload a photo to generate)  '}
           </pre>
         </div>

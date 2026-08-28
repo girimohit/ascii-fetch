@@ -26,8 +26,8 @@ export function generateAsciiFromImage(
         const originalHeight = img.naturalHeight || img.height;
         const aspectRatio = originalHeight / originalWidth;
 
-        // Terminal monospace characters are approx 1.9x taller than wide (factor: 0.52)
-        const targetWidth = Math.max(20, Math.min(100, Math.floor(width)));
+        // Monospace characters are approx 1.9x taller than wide (0.52 aspect ratio)
+        const targetWidth = Math.max(20, Math.min(260, Math.floor(width)));
         const targetHeight = Math.max(10, Math.floor(aspectRatio * targetWidth * 0.52));
 
         const canvas = document.createElement('canvas');
