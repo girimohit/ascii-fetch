@@ -16,7 +16,6 @@ export default function ReadmeCard({
   cardBgColor = '#0d1117',
   cardRef,
 }: ReadmeCardProps) {
-  // Calculate max key length for dot alignment (or standard alignment)
   const maxKeyLen = Math.max(
     ...fields.filter((f) => !f.isSectionHeader).map((f) => f.key.length + 1),
     16
@@ -31,17 +30,16 @@ export default function ReadmeCard({
     >
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 min-w-max">
         
-        {/* Left Column: Monospace ASCII Art */}
+        {/* Left: ASCII Art */}
         <div className="flex-shrink-0 flex items-center justify-center">
           <pre className="ascii-art text-[10px] sm:text-[11px] leading-[1.05] text-[#e6edf3] font-bold">
-            {asciiArt || '  (ASCII art will appear here)  '}
+            {asciiArt || '  (upload a photo to generate)  '}
           </pre>
         </div>
 
-        {/* Right Column: Fastfetch User Information */}
+        {/* Right: Info */}
         <div className="flex-1 flex flex-col justify-center min-w-[320px] text-xs sm:text-[13px] leading-relaxed">
           
-          {/* Header @username with dashed line */}
           <div className="flex items-center gap-2 mb-3">
             <span className="text-[#3fb950] font-bold">@{username || 'user'}</span>
             <span className="text-[#484f58] tracking-tighter flex-1 overflow-hidden whitespace-nowrap">
@@ -49,7 +47,6 @@ export default function ReadmeCard({
             </span>
           </div>
 
-          {/* Fields list */}
           <div className="space-y-1">
             {fields.map((field) => {
               if (field.isSectionHeader) {

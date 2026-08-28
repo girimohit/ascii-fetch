@@ -44,7 +44,6 @@ export default function App() {
 
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Trigger live ASCII generation when photo or settings change
   useEffect(() => {
     if (!photoUrl) {
       setAsciiArt(DEFAULT_ASCII);
@@ -57,18 +56,11 @@ export default function App() {
       inverted: invertAscii,
       contrast: 1.15,
     })
-      .then((art) => {
-        setAsciiArt(art);
-      })
-      .catch((err) => {
-        console.error('ASCII generation error:', err);
-      })
-      .finally(() => {
-        setIsConverting(false);
-      });
+      .then((art) => setAsciiArt(art))
+      .catch((err) => console.error(err))
+      .finally(() => setIsConverting(false));
   }, [photoUrl, asciiWidth, invertAscii]);
 
-  // Download high-resolution PNG of the terminal card
   const handleDownloadPng = async () => {
     if (!cardRef.current) return;
     setIsExporting(true);
@@ -78,12 +70,11 @@ export default function App() {
         cacheBust: true,
       });
       const link = document.createElement('a');
-      link.download = `${username || 'fastfetch'}-readme-card.png`;
+      link.download = `${username || 'readme'}-card.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
-      console.error('Failed to export PNG:', err);
-      alert('Could not export PNG card. Please try again.');
+      console.error('Failed to export PNG', err);
     } finally {
       setIsExporting(false);
     }
@@ -91,14 +82,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Top Header */}
       <Header />
 
-      {/* Main Workspace */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Configuration & Editor */}
+          {/* Editor */}
           <section className="lg:col-span-5 space-y-6">
             <div className="glass-panel rounded-2xl p-6 space-y-6">
               <div>
@@ -108,7 +97,6 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Username Input */}
               <div className="space-y-2">
                 <label className="text-xs font-medium text-neutral-300">GitHub Username</label>
                 <div className="relative">
@@ -123,13 +111,11 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Photo Uploader */}
               <PhotoUploader
                 photoUrl={photoUrl}
                 onPhotoChange={setPhotoUrl}
               />
 
-              {/* ASCII Art Resolution & Contrast Controls */}
               {photoUrl && (
                 <div className="p-3.5 rounded-xl bg-black/30 border border-white/5 space-y-3">
                   <div className="flex items-center justify-between text-xs">
@@ -157,7 +143,7 @@ export default function App() {
                       Invert light/dark ramp
                     </label>
                     {isConverting && (
-                      <span className="text-[10px] text-[#38bdf8] animate-pulse font-mono">
+                      <span className="text-[10px] text-[#38bdf8] font-mono">
                         processing...
                       </span>
                     )}
@@ -165,7 +151,6 @@ export default function App() {
                 </div>
               )}
 
-              {/* Card Background Color Selector */}
               <div className="space-y-2.5">
                 <label className="text-xs font-medium text-neutral-300">Card Background</label>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -199,7 +184,6 @@ export default function App() {
 
               <hr className="border-white/10" />
 
-              {/* Dynamic Field Editor */}
               <FieldEditor
                 fields={fields}
                 onChange={setFields}
@@ -207,7 +191,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* Right Column: Live README Preview */}
+          {/* Preview */}
           <section className="lg:col-span-7 space-y-6">
             <div className="glass-panel rounded-2xl p-6 space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3">
@@ -218,7 +202,6 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* Download PNG Button */}
                 <button
                   type="button"
                   onClick={handleDownloadPng}
@@ -237,7 +220,6 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Readme Card Component */}
               <div className="overflow-x-auto pb-2">
                 <ReadmeCard
                   cardRef={cardRef}
