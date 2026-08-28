@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import PhotoUploader from './components/PhotoUploader';
 import FieldEditor from './components/FieldEditor';
 import ReadmeCard from './components/ReadmeCard';
 import { DEFAULT_ASCII } from './utils/constants';
+import { generateAsciiFromImage } from './utils/asciiGenerator';
 import type { ProfileField } from './types';
 
 const INITIAL_FIELDS: ProfileField[] = [
@@ -26,7 +27,34 @@ export default function App() {
   const [username, setUsername] = useState('mohitgiri');
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [asciiArt, setAsciiArt] = useState<string>(DEFAULT_ASCII);
+  const [asciiWidth, setAsciiWidth] = useState<number>(44);
+  const [invertAscii, setInvertAscii] = useState<boolean>(false);
+  const [isConverting, setIsConverting] = useState<boolean>(false);
   const [fields, setFields] = useState<ProfileField[]>(INITIAL_FIELDS);
+
+  // Trigger live ASCII generation when photo or settings change
+  useEffect(() => {
+    if (!photoUrl) {
+      setAsciiArt(DEFAULT_ASCII);
+      return;
+    }
+
+    setIsConverting(true);
+    generateAsciiFromImage(photoUrl, {
+      width: asciiWidth,
+      inverted: invertAscii,
+      contrast: 1.15,
+    })
+      .then((art) => {
+        setAsciiArt(art);
+      })
+      .catch((err) => {
+        console.error('ASCII generation error:', err);
+      })
+      .finally(() => {
+        setIsConverting(false);
+      });
+  }, [photoUrl, asciiWidth, invertAscii]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -67,6 +95,42 @@ export default function App() {
                 photoUrl={photoUrl}
                 onPhotoChange={setPhotoUrl}
               />
+
+              {/* ASCII Art Resolution & Contrast Controls */}
+              {photoUrl && (
+                <div className="p-3.5 rounded-xl bg-black/30 border border-white/5 space-y-3">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-neutral-300 font-medium">ASCII Resolution</span>
+                    <span className="text-[#C660CE] font-mono text-[11px]">{asciiWidth} chars</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="32"
+                    max="64"
+                    step="2"
+                    value={asciiWidth}
+                    onChange={(e) => setAsciiWidth(Number(e.target.value))}
+                    className="w-full accent-[#C660CE] cursor-pointer"
+                  />
+
+                  <div className="flex items-center justify-between pt-1">
+                    <label className="text-xs text-neutral-400 cursor-pointer flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={invertAscii}
+                        onChange={(e) => setInvertAscii(e.target.checked)}
+                        className="rounded bg-neutral-900 border-white/10 text-[#C660CE] focus:ring-0 cursor-pointer"
+                      />
+                      Invert light/dark ramp
+                    </label>
+                    {isConverting && (
+                      <span className="text-[10px] text-[#38bdf8] animate-pulse font-mono">
+                        processing...
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
 
               <hr className="border-white/10" />
 
