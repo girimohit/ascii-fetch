@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+# ASCII-FETCH
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Fastfetch / Neofetch-style GitHub README card generator with real-time ASCII art rendering.**
 
-Currently, two official plugins are available:
+Create a developer-focused, terminal-style bio card for your GitHub profile README in seconds. Upload any photo, convert it into an ASCII matrix, customize your tech stack, and download a PNG ready to drop into your profile.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Real-Time ASCII Art Engine**: 100% client-side image-to-ASCII conversion with luminance grayscale mapping and `0.52` monospace aspect ratio correction.
+- **Dual Art Controls**:
+  - **Density Slider**: Adjust character sampling resolution (30 to 180 columns).
+  - **Art Scale Slider**: Scale the display font size independently without breaking card alignment.
+  - **Invert Ramp**: Flip between light and dark ASCII character ramps.
+- **Dynamic Field Editor**:
+  - Customize GitHub username.
+  - Add, edit, or delete custom key-value pairs (Role, Languages, Tools, Architecture, etc.).
+  - Add custom section dividers (`- Contact ───`).
+- **Card Background Customizer**: Choose between presets (*GitHub Dark `#0d1117`*, *Pitch Black `#05070a`*, *Charcoal `#161b22`*) or select any custom hex color.
+- **1-Click High-Res PNG Export**: Exports crisp 2x pixel-density PNG cards optimized for GitHub READMEs with no scrollbars.
+- **Modern Glassmorphic UI**: Obsidian dark theme (`#181818`) with `#C660CE` purple accents and subtle ambient mesh.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Framework**: [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Exporting**: [html-to-image](https://github.com/bubkoo/html-to-image)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Author
 
-```
+Crafted by **[Mohit Giri](https://github.com/girimohit)**.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## License
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+This project is licensed under the MIT License.
