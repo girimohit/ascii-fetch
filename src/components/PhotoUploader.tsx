@@ -47,7 +47,7 @@ export default function PhotoUploader({ photoUrl, onPhotoChange }: PhotoUploader
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-medium text-neutral-300">Profile Photo</label>
+        <label className="text-sm font-medium text-neutral-300">Profile Photo</label>
         {photoUrl && (
           <button
             type="button"
@@ -55,7 +55,7 @@ export default function PhotoUploader({ photoUrl, onPhotoChange }: PhotoUploader
               onPhotoChange(null);
               if (fileInputRef.current) fileInputRef.current.value = '';
             }}
-            className="text-xs text-rose-400 hover:text-rose-300 transition-colors"
+            className="text-xs text-rose-400 hover:text-rose-300 transition-colors cursor-pointer"
           >
             Remove
           </button>
@@ -71,20 +71,20 @@ export default function PhotoUploader({ photoUrl, onPhotoChange }: PhotoUploader
       />
 
       {photoUrl ? (
-        <div className="relative group rounded-xl overflow-hidden border border-white/10 bg-black/40 p-2 flex items-center gap-4">
+        <div className="relative group rounded-xl overflow-hidden border border-white/10 bg-black/40 p-2.5 flex items-center gap-4">
           <img
             src={photoUrl}
             alt="Profile preview"
             className="w-16 h-16 object-cover rounded-lg border border-white/10"
           />
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-white truncate">Image loaded</p>
-            <p className="text-[11px] text-neutral-400">Ready for ASCII conversion</p>
+            <p className="text-sm font-medium text-white truncate">Image loaded</p>
+            <p className="text-xs text-neutral-400">Ready for ASCII conversion</p>
           </div>
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="glass-btn px-3 py-1.5 rounded-lg text-xs font-medium mr-1"
+            className="glass-btn px-3 py-1.5 rounded-lg text-xs font-medium mr-1 cursor-pointer"
           >
             Replace
           </button>
@@ -101,9 +101,9 @@ export default function PhotoUploader({ photoUrl, onPhotoChange }: PhotoUploader
               : 'border-white/10 hover:border-white/20 bg-black/20 hover:bg-black/30'
           }`}
         >
-          <div className="flex flex-col items-center gap-1.5">
+          <div className="flex flex-col items-center gap-2">
             <svg
-              className="w-6 h-6 text-neutral-400 mb-1"
+              className="w-7 h-7 text-neutral-400 mb-0.5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -115,10 +115,10 @@ export default function PhotoUploader({ photoUrl, onPhotoChange }: PhotoUploader
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <p className="text-xs text-neutral-200">
+            <p className="text-sm text-neutral-200">
               <span className="text-[#C660CE] font-medium">Click to upload</span> or drag and drop
             </p>
-            <p className="text-[10px] text-neutral-500 font-mono">PNG, JPG, WEBP up to 5MB</p>
+            <p className="text-xs text-neutral-500 font-mono">PNG, JPG, WEBP up to 5MB</p>
           </div>
         </div>
       )}

@@ -27,7 +27,6 @@ const INITIAL_FIELDS: ProfileField[] = [
 const CARD_BG_PRESETS = [
   { name: 'GitHub Dark', hex: '#0d1117' },
   { name: 'Pitch Black', hex: '#05070a' },
-  { name: 'Dark Slate', hex: '#0f172a' },
   { name: 'Charcoal', hex: '#161b22' },
 ];
 
@@ -81,7 +80,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col text-[15px]">
       <Header />
 
       <main className="flex-1 max-w-8xl w-full mx-auto p-4 sm:p-6 lg:p-8">
@@ -91,22 +90,23 @@ export default function App() {
           <section className="lg:col-span-4 space-y-6">
             <div className="glass-panel rounded-2xl p-6 space-y-6">
               <div>
-                <h2 className="text-lg font-medium text-white mb-1">Configuration</h2>
-                <p className="text-xs text-neutral-400">
+                <h2 className="text-xl font-medium text-white mb-1">Configuration</h2>
+                <p className="text-sm text-neutral-400">
                   Customize your profile details and photo
                 </p>
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-medium text-neutral-300">GitHub Username</label>
+                <label className="text-sm font-medium text-neutral-300">GitHub Username</label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-xs text-neutral-500 font-mono">@</span>
+                  <span className="absolute left-3.5 top-2.5 text-sm text-neutral-500 font-mono">@</span>
                   <input
                     type="text"
+                    maxLength={24}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="yourname"
-                    className="glass-input w-full pl-7 pr-3 py-2 rounded-xl text-xs font-mono"
+                    className="glass-input w-full pl-8 pr-3.5 py-2.5 rounded-xl text-sm font-mono"
                   />
                 </div>
               </div>
@@ -117,10 +117,10 @@ export default function App() {
               />
 
               {photoUrl && (
-                <div className="p-3.5 rounded-xl bg-black/30 border border-white/5 space-y-3">
-                  <div className="flex items-center justify-between text-xs">
+                <div className="p-4 rounded-xl bg-black/30 border border-white/5 space-y-3">
+                  <div className="flex items-center justify-between text-sm">
                     <span className="text-neutral-300 font-medium">ASCII Resolution</span>
-                    <span className="text-[#C660CE] font-mono text-[11px]">{asciiWidth} chars</span>
+                    <span className="text-[#C660CE] font-mono text-xs font-semibold">{asciiWidth} chars</span>
                   </div>
                   <input
                     type="range"
@@ -133,7 +133,7 @@ export default function App() {
                   />
 
                   <div className="flex items-center justify-between pt-1">
-                    <label className="text-xs text-neutral-400 cursor-pointer flex items-center gap-2">
+                    <label className="text-sm text-neutral-400 cursor-pointer flex items-center gap-2">
                       <input
                         type="checkbox"
                         checked={invertAscii}
@@ -143,7 +143,7 @@ export default function App() {
                       Invert light/dark ramp
                     </label>
                     {isConverting && (
-                      <span className="text-[10px] text-[#38bdf8] font-mono">
+                      <span className="text-xs text-[#38bdf8] font-mono">
                         processing...
                       </span>
                     )}
@@ -152,21 +152,21 @@ export default function App() {
               )}
 
               <div className="space-y-2.5">
-                <label className="text-xs font-medium text-neutral-300">Card Background</label>
+                <label className="text-sm font-medium text-neutral-300">Card Background</label>
                 <div className="flex items-center gap-2 flex-wrap">
                   {CARD_BG_PRESETS.map((preset) => (
                     <button
                       key={preset.hex}
                       type="button"
                       onClick={() => setCardBgColor(preset.hex)}
-                      className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono flex items-center gap-1.5 transition-all ${
+                      className={`px-3 py-1.5 rounded-lg text-xs font-mono flex items-center gap-2 transition-all cursor-pointer ${
                         cardBgColor === preset.hex
                           ? 'bg-[#C660CE]/20 text-white border border-[#C660CE]'
                           : 'bg-black/30 text-neutral-400 border border-white/5 hover:border-white/15'
                       }`}
                     >
                       <span
-                        className="w-2.5 h-2.5 rounded-full border border-white/20"
+                        className="w-3 h-3 rounded-full border border-white/20"
                         style={{ backgroundColor: preset.hex }}
                       />
                       {preset.name}
@@ -177,7 +177,7 @@ export default function App() {
                     value={cardBgColor}
                     onChange={(e) => setCardBgColor(e.target.value)}
                     title="Custom color"
-                    className="w-7 h-7 rounded-lg bg-transparent border border-white/10 cursor-pointer p-0.5"
+                    className="w-8 h-8 rounded-lg bg-transparent border border-white/10 cursor-pointer p-0.5"
                   />
                 </div>
               </div>
@@ -196,8 +196,8 @@ export default function App() {
             <div className="glass-panel rounded-2xl p-6 space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3">
                 <div>
-                  <h2 className="text-lg font-medium text-white mb-0.5">Live Preview</h2>
-                  <p className="text-xs text-neutral-400">
+                  <h2 className="text-xl font-medium text-white mb-1">Live Preview</h2>
+                  <p className="text-sm text-neutral-400">
                     Real-time generated GitHub README card
                   </p>
                 </div>
@@ -206,7 +206,7 @@ export default function App() {
                   type="button"
                   onClick={handleDownloadPng}
                   disabled={isExporting}
-                  className="glass-btn-primary px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="glass-btn-primary px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
