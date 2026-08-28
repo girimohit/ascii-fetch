@@ -1,14 +1,10 @@
+import Header from './components/Header';
+
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Top Header Placeholder */}
-      <header className="border-b border-white/5 bg-black/20 backdrop-blur-md px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <span className="font-semibold tracking-wide text-sm text-neutral-300">
-            fastfetch-readme<span className="text-[#C660CE]">.gen</span>
-          </span>
-        </div>
-      </header>
+      {/* Top Header */}
+      <Header />
 
       {/* Main Workspace */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
@@ -23,7 +19,7 @@ export default function App() {
               </p>
               
               <div className="text-xs text-neutral-500 border border-dashed border-white/10 rounded-xl p-8 text-center">
-                Editor controls 
+                Editor controls
               </div>
             </div>
           </section>
@@ -39,7 +35,7 @@ export default function App() {
               </div>
 
               <div className="text-xs text-neutral-500 border border-dashed border-white/10 rounded-xl p-12 text-center">
-                Fastfetch card preview 
+                Fastfetch card preview
               </div>
             </div>
           </section>
