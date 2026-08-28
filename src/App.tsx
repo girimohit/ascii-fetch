@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import Header from './components/Header';
+import PhotoUploader from './components/PhotoUploader';
 
 export default function App() {
+  const [username, setUsername] = useState('mohitgiri');
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top Header */}
@@ -12,15 +17,34 @@ export default function App() {
           
           {/* Left Column: Configuration & Editor */}
           <section className="lg:col-span-5 space-y-6">
-            <div className="glass-panel rounded-2xl p-6">
-              <h2 className="text-lg font-medium text-white mb-1">Configuration</h2>
-              <p className="text-xs text-neutral-400 mb-6">
-                Customize your profile
-              </p>
-              
-              <div className="text-xs text-neutral-500 border border-dashed border-white/10 rounded-xl p-8 text-center">
-                Editor controls
+            <div className="glass-panel rounded-2xl p-6 space-y-6">
+              <div>
+                <h2 className="text-lg font-medium text-white mb-1">Configuration</h2>
+                <p className="text-xs text-neutral-400">
+                  Customize your profile and photo
+                </p>
               </div>
+
+              {/* Username Input */}
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-neutral-300">GitHub Username</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-2.5 text-xs text-neutral-500 font-mono">@</span>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="yourname"
+                    className="glass-input w-full pl-7 pr-3 py-2 rounded-xl text-xs font-mono"
+                  />
+                </div>
+              </div>
+
+              {/* Photo Uploader */}
+              <PhotoUploader
+                photoUrl={photoUrl}
+                onPhotoChange={setPhotoUrl}
+              />
             </div>
           </section>
 
