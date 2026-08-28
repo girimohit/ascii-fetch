@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { toPng } from 'html-to-image';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import PhotoUploader from './components/PhotoUploader';
 import FieldEditor from './components/FieldEditor';
 import ReadmeCard from './components/ReadmeCard';
@@ -10,18 +11,14 @@ import type { ProfileField } from './types';
 
 const INITIAL_FIELDS: ProfileField[] = [
   { id: '1', key: 'Role', value: 'Software Development Engineer' },
-  { id: '2', key: 'Status', value: 'Building' },
-  { id: '3', key: 'Focus', value: 'Web Apps, SaaS, Backend Systems' },
-  { id: '4', key: 'Languages.Core', value: 'C++, JavaScript, TypeScript, Python' },
-  { id: '5', key: 'Frameworks.Frontend', value: 'Next.js, React' },
-  { id: '6', key: 'Frameworks.Backend', value: 'Django, REST APIs' },
-  { id: '7', key: 'DevOps', value: 'Docker, AWS' },
-  { id: '8', key: 'Architecture', value: 'Multi-tenant, APIs, Database Design' },
-  { id: '9', key: 'Approach', value: 'Build fast, learn faster' },
-  { id: '10', key: 'Contact', value: '', isSectionHeader: true },
-  { id: '11', key: 'Email', value: 'mohitgiri1103@gmail.com' },
-  { id: '12', key: 'Portfolio', value: 'mohitgiri.vercel.app' },
-  { id: '13', key: 'LinkedIn', value: 'linkedin.com/in/mohitgiri' },
+  { id: '2', key: 'Languages', value: 'C++, JavaScript, TypeScript, Python' },
+  { id: '3', key: 'Architecture', value: 'APIs, Database Design' },
+  { id: '4', key: 'Tools', value: 'Docker, AWS' },
+  { id: '5', key: 'Projects', value: 'proj1, proj2, ..' },
+  { id: '6', key: 'Contact', value: '', isSectionHeader: true },
+  { id: '7', key: 'Email', value: 'user@gmail.com' },
+  { id: '8', key: 'LinkedIn', value: 'linkedin.com/in/username' },
+  { id: '9', key: 'Phone', value: '1234567890' },
 ];
 
 const CARD_BG_PRESETS = [
@@ -256,6 +253,8 @@ export default function App() {
 
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
