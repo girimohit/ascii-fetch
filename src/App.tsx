@@ -84,11 +84,11 @@ export default function App() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      <main className="flex-1 max-w-8xl w-full mx-auto p-4 sm:p-6 lg:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Editor */}
-          <section className="lg:col-span-5 space-y-6">
+          <section className="lg:col-span-4 space-y-6">
             <div className="glass-panel rounded-2xl p-6 space-y-6">
               <div>
                 <h2 className="text-lg font-medium text-white mb-1">Configuration</h2>
@@ -192,7 +192,7 @@ export default function App() {
           </section>
 
           {/* Preview */}
-          <section className="lg:col-span-7 space-y-6">
+          <section className="lg:col-span-8 space-y-6">
             <div className="glass-panel rounded-2xl p-6 space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3">
                 <div>

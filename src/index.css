@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0b0e14;
-  --surface: rgba(22, 27, 39, 0.72);
-  --surface-hover: rgba(30, 37, 54, 0.85);
-  --border: rgba(255, 255, 255, 0.09);
+  --bg: #181818;
+  --surface: rgba(28, 28, 30, 0.75);
+  --surface-hover: rgba(38, 38, 42, 0.85);
+  --border: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(198, 96, 206, 0.5);
   
-  /* Primary Accent & Glows */
+  /* Accent */
   --primary: #C660CE;
   --primary-hover: #b34ebc;
   --accent-cyan: #38bdf8;
@@ -16,7 +16,7 @@
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
 
-  /* Card Colors (Terminal / Fastfetch) */
+  /* Card Colors */
   --card-bg: #0d1117;
   --card-green: #3fb950;
   --card-orange: #f0883e;
@@ -31,8 +31,8 @@ body {
   color: var(--text-main);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(198, 96, 206, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(56, 189, 248, 0.07), transparent),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(198, 96, 206, 0.1), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(56, 189, 248, 0.05), transparent),
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
@@ -40,7 +40,6 @@ body {
   min-height: 100vh;
 }
 
-/* Glassmorphism panel utility */
 .glass-panel {
   background: var(--surface);
   backdrop-filter: blur(14px);
@@ -50,7 +49,7 @@ body {
 }
 
 .glass-input {
-  background: rgba(11, 14, 20, 0.65);
+  background: rgba(18, 18, 20, 0.7);
   border: 1px solid var(--border);
   color: var(--text-main);
   transition: all 0.2s ease;
@@ -60,7 +59,7 @@ body {
   outline: none;
   border-color: var(--border-focus);
   box-shadow: 0 0 0 2px rgba(198, 96, 206, 0.25);
-  background: rgba(11, 14, 20, 0.85);
+  background: rgba(18, 18, 20, 0.9);
 }
 
 .glass-btn {
@@ -89,7 +88,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Monospace ASCII art font styling */
 .ascii-art {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   line-height: 1.05;
@@ -97,7 +95,6 @@ body {
   white-space: pre;
 }
 
-/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

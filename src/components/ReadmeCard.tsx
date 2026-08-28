@@ -26,18 +26,18 @@ export default function ReadmeCard({
       ref={cardRef}
       id="readme-card-container"
       style={{ backgroundColor: cardBgColor }}
-      className="p-8 sm:p-10 rounded-xl text-neutral-100 font-mono select-none overflow-x-auto shadow-2xl border border-white/10"
+      className="p-8 sm:p-10 rounded-xl text-neutral-100 font-mono select-none shadow-2xl border border-white/10 w-max max-w-none"
     >
-      <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 min-w-max">
+      <div className="flex flex-row items-start gap-8 md:gap-12">
         
-        {/* Left: ASCII Art */}
+        {/* ASCII Art */}
         <div className="flex-shrink-0 flex items-center justify-center">
           <pre className="ascii-art text-[10px] sm:text-[11px] leading-[1.05] text-[#e6edf3] font-bold">
             {asciiArt || '  (upload a photo to generate)  '}
           </pre>
         </div>
 
-        {/* Right: Info */}
+        {/* User Info */}
         <div className="flex-1 flex flex-col justify-center min-w-[320px] text-xs sm:text-[13px] leading-relaxed">
           
           <div className="flex items-center gap-2 mb-3">
